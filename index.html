@@ -1,17 +1,746 @@
+```html
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Phòng khám Mini</title>
 
     <link rel="stylesheet" href="./src/css/style.css">
+    <link rel="stylesheet" href="./src/css/print.css" media="print">
 </head>
+
 <body>
 
-    <div id="app"></div>
+    <header class="app-header">
+        <div>
+            <h1>Phòng khám Mini</h1>
+            <p>Tiếp nhận bệnh nhân và kê đơn thuốc.</p>
+        </div>
+
+        <div class="header-actions">
+            <button
+                id="button-tao-du-lieu-mau"
+                type="button"
+                data-testid="button-tao-du-lieu-mau">
+                Tạo dữ liệu mẫu
+            </button>
+
+            <button
+                id="button-xoa-du-lieu"
+                type="button"
+                data-testid="button-xoa-du-lieu">
+                Xóa toàn bộ dữ liệu
+            </button>
+        </div>
+    </header>
+
+    <div
+        id="thong-bao-he-thong"
+        class="system-message"
+        aria-live="polite"
+        data-testid="thong-bao-he-thong">
+    </div>
+
+    <nav class="main-navigation" aria-label="Điều hướng chính">
+
+        <button
+            type="button"
+            class="nav-button active"
+            data-section="benh-nhan">
+            Tiếp nhận bệnh nhân
+        </button>
+
+        <button
+            type="button"
+            class="nav-button"
+            data-section="kham-benh">
+            Khám và kê đơn
+        </button>
+
+        <button
+            type="button"
+            class="nav-button"
+            data-section="lich-su">
+            Lịch sử đơn thuốc
+        </button>
+
+    </nav>
+
+    <main>
+
+        <!-- ===================================================== -->
+        <!-- TIẾP NHẬN BỆNH NHÂN -->
+        <!-- ===================================================== -->
+
+        <section
+            id="section-benh-nhan"
+            class="page-section active">
+
+            <h2>Tiếp nhận bệnh nhân</h2>
+
+            <form
+                id="form-benh-nhan"
+                data-testid="form-benh-nhan"
+                novalidate>
+
+                <input
+                    type="hidden"
+                    id="benh-nhan-id">
+
+                <div>
+
+                    <label for="ho-ten">
+                        Họ tên *
+                    </label>
+
+                    <input
+                        id="ho-ten"
+                        name="hoTen"
+                        type="text"
+                        required
+                        data-testid="input-ho-ten">
+
+                </div>
+
+                <div>
+
+                    <label for="ngay-sinh">
+                        Ngày sinh *
+                    </label>
+
+                    <input
+                        id="ngay-sinh"
+                        name="ngaySinh"
+                        type="date"
+                        required
+                        data-testid="input-ngay-sinh">
+
+                </div>
+
+                <div>
+
+                    <label for="gioi-tinh">
+                        Giới tính
+                    </label>
+
+                    <select
+                        id="gioi-tinh"
+                        name="gioiTinh">
+
+                        <option value="">Chọn</option>
+                        <option value="Nam">Nam</option>
+                        <option value="Nữ">Nữ</option>
+                        <option value="Khác">Khác</option>
+
+                    </select>
+
+                </div>
+
+                <div>
+
+                    <label for="so-dien-thoai">
+                        Số điện thoại *
+                    </label>
+
+                    <input
+                        id="so-dien-thoai"
+                        name="soDienThoai"
+                        type="tel"
+                        required
+                        data-testid="input-so-dien-thoai">
+
+                </div>
+
+                <div>
+
+                    <label for="dia-chi">
+                        Địa chỉ
+                    </label>
+
+                    <textarea
+                        id="dia-chi"
+                        name="diaChi"></textarea>
+
+                </div>
+
+                <div>
+
+                    <label for="trieu-chung">
+                        Triệu chứng
+                    </label>
+
+                    <textarea
+                        id="trieu-chung"
+                        name="trieuChung"></textarea>
+
+                </div>
+
+                <div>
+
+                    <label for="tien-su-benh">
+                        Tiền sử bệnh
+                    </label>
+
+                    <textarea
+                        id="tien-su-benh"
+                        name="tienSuBenh"></textarea>
+
+                </div>
+
+                <div>
+
+                    <label for="di-ung-thuoc">
+                        Dị ứng thuốc
+                    </label>
+
+                    <textarea
+                        id="di-ung-thuoc"
+                        name="diUngThuoc"></textarea>
+
+                </div>
+
+                <div
+                    id="loi-form-benh-nhan"
+                    class="form-error"
+                    aria-live="polite">
+                </div>
+
+                <div class="form-actions">
+
+                    <button
+                        id="button-luu-benh-nhan"
+                        type="submit"
+                        data-testid="button-luu-benh-nhan">
+                        Lưu
+                    </button>
+
+                    <button
+                        id="button-lam-moi-benh-nhan"
+                        type="reset">
+                        Làm mới
+                    </button>
+
+                </div>
+
+            </form>
+
+            <hr>
+
+            <section>
+
+                <h3>Danh sách bệnh nhân</h3>
+
+                <div class="toolbar">
+
+                    <div>
+
+                        <label for="tim-benh-nhan">
+                            Tìm kiếm
+                        </label>
+
+                        <input
+                            id="tim-benh-nhan"
+                            type="search"
+                            placeholder="Mã, tên hoặc số điện thoại"
+                            data-testid="input-tim-benh-nhan">
+
+                    </div>
+
+                    <div>
+
+                        <label for="loc-trang-thai-benh-nhan">
+                            Trạng thái
+                        </label>
+
+                        <select id="loc-trang-thai-benh-nhan">
+
+                            <option value="">Tất cả</option>
+                            <option value="cho_kham">Chờ khám</option>
+                            <option value="dang_kham">Đang khám</option>
+                            <option value="da_kham">Đã khám</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <table
+                    id="danh-sach-benh-nhan"
+                    data-testid="danh-sach-benh-nhan">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Mã</th>
+                            <th>Họ tên</th>
+                            <th>Điện thoại</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- KHÁM BỆNH -->
+        <!-- ===================================================== -->
+
+        <section
+            id="section-kham-benh"
+            class="page-section"
+            hidden
+            data-testid="khu-vuc-kham-benh">
+
+            <h2>Khám và kê đơn</h2>
+
+            <article>
+
+                <h3>Thông tin bệnh nhân</h3>
+
+                <dl>
+
+                    <dt>Mã bệnh nhân</dt>
+                    <dd id="chi-tiet-ma-benh-nhan">-</dd>
+
+                    <dt>Họ tên</dt>
+                    <dd id="chi-tiet-ho-ten">-</dd>
+
+                    <dt>Ngày sinh</dt>
+                    <dd id="chi-tiet-ngay-sinh">-</dd>
+
+                    <dt>Số điện thoại</dt>
+                    <dd id="chi-tiet-so-dien-thoai">-</dd>
+
+                    <dt>Triệu chứng</dt>
+                    <dd id="chi-tiet-trieu-chung">-</dd>
+
+                    <dt>Tiền sử bệnh</dt>
+                    <dd id="chi-tiet-tien-su-benh">-</dd>
+
+                    <dt>Dị ứng thuốc</dt>
+                    <dd id="chi-tiet-di-ung-thuoc">-</dd>
+
+                </dl>
+
+            </article>
+
+            <form
+                id="form-kham-benh"
+                novalidate>
+
+                <h3>Thông tin khám</h3>
+
+                <div>
+
+                    <label for="ten-bac-si">
+                        Tên bác sĩ *
+                    </label>
+
+                    <input
+                        id="ten-bac-si"
+                        type="text"
+                        required
+                        data-testid="input-ten-bac-si">
+
+                </div>
+
+                <div>
+
+                    <label for="chuan-doan">
+                        Chẩn đoán *
+                    </label>
+
+                    <textarea
+                        id="chuan-doan"
+                        required
+                        data-testid="input-chuan-doan"></textarea>
+
+                </div>
+
+                <div>
+
+                    <label for="loi-dan">
+                        Lời dặn
+                    </label>
+
+                    <textarea id="loi-dan"></textarea>
+
+                </div>
+
+                <div
+                    id="loi-form-kham"
+                    class="form-error"
+                    aria-live="polite">
+                </div>
+
+            </form>
+
+            <hr>
+
+            <section>
+
+                <h3>Thêm thuốc</h3>
+
+                <form
+                    id="form-thuoc"
+                    novalidate>
+
+                    <div>
+
+                        <label for="ten-thuoc">
+                            Tên thuốc *
+                        </label>
+
+                        <input
+                            id="ten-thuoc"
+                            required
+                            data-testid="input-ten-thuoc">
+
+                    </div>
+
+                    <div>
+
+                        <label for="ham-luong">
+                            Hàm lượng
+                        </label>
+
+                        <input
+                            id="ham-luong">
+
+                    </div>
+
+                    <div>
+
+                        <label for="don-vi">
+                            Đơn vị
+                        </label>
+
+                        <input
+                            id="don-vi">
+
+                    </div>
+
+                    <div>
+
+                        <label for="so-luong-moi-lan">
+                            Số lượng mỗi lần *
+                        </label>
+
+                        <input
+                            id="so-luong-moi-lan"
+                            type="number"
+                            min="1"
+                            required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="so-lan-moi-ngay">
+                            Số lần mỗi ngày *
+                        </label>
+
+                        <input
+                            id="so-lan-moi-ngay"
+                            type="number"
+                            min="1"
+                            required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="so-ngay-dung">
+                            Số ngày dùng *
+                        </label>
+
+                        <input
+                            id="so-ngay-dung"
+                            type="number"
+                            min="1"
+                            required>
+
+                    </div>
+
+                    <div>
+
+                        <label for="tong-so-luong">
+                            Tổng số lượng
+                        </label>
+
+                        <input
+                            id="tong-so-luong"
+                            readonly>
+
+                    </div>
+
+                    <div>
+
+                        <label for="cach-dung">
+                            Cách dùng
+                        </label>
+
+                        <textarea id="cach-dung"></textarea>
+
+                    </div>
+
+                    <div>
+
+                        <label for="thoi-diem-dung">
+                            Thời điểm dùng
+                        </label>
+
+                        <input id="thoi-diem-dung">
+
+                    </div>
+
+                    <div
+                        id="loi-form-thuoc"
+                        class="form-error"
+                        aria-live="polite">
+                    </div>
+
+                    <button
+                        id="button-them-thuoc"
+                        type="submit"
+                        data-testid="button-them-thuoc">
+                        Thêm thuốc
+                    </button>
+
+                </form>
+
+            </section>
+
+            <section>
+
+                <h3>Danh sách thuốc</h3>
+
+                <table
+                    id="danh-sach-thuoc"
+                    data-testid="danh-sach-thuoc">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>STT</th>
+                            <th>Tên thuốc</th>
+                            <th>Hàm lượng</th>
+                            <th>Liều dùng</th>
+                            <th>Số ngày</th>
+                            <th>Tổng số lượng</th>
+                            <th>Cách dùng</th>
+                            <th>Thao tác</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <div class="form-actions">
+
+                <button
+                    id="button-luu-nhap"
+                    type="button">
+                    Lưu nháp
+                </button>
+
+                <button
+                    id="button-hoan-tat-don"
+                    type="button"
+                    data-testid="button-hoan-tat-don">
+                    Hoàn tất đơn thuốc
+                </button>
+
+                <button
+                    id="button-huy-kham"
+                    type="button">
+                    Hủy thao tác khám
+                </button>
+
+            </div>
+
+        </section>
+
+        <!-- ===================================================== -->
+        <!-- LỊCH SỬ -->
+        <!-- ===================================================== -->
+
+        <section
+            id="section-lich-su"
+            class="page-section"
+            hidden>
+
+            <h2>Lịch sử đơn thuốc</h2>
+
+            <div class="toolbar">
+
+                <div>
+
+                    <label for="tim-don-thuoc">
+                        Tìm kiếm
+                    </label>
+
+                    <input
+                        id="tim-don-thuoc"
+                        type="search">
+
+                </div>
+
+                <div>
+
+                    <label for="loc-trang-thai-don">
+                        Trạng thái
+                    </label>
+
+                    <select id="loc-trang-thai-don">
+
+                        <option value="">Tất cả</option>
+                        <option value="nhap">Nháp</option>
+                        <option value="da_hoan_tat">Đã hoàn tất</option>
+                        <option value="da_huy">Đã hủy</option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+            <table
+                id="danh-sach-don-thuoc"
+                data-testid="danh-sach-don-thuoc">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Mã đơn</th>
+                        <th>Bệnh nhân</th>
+                        <th>Bác sĩ</th>
+                        <th>Ngày kê</th>
+                        <th>Trạng thái</th>
+                        <th>Thao tác</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+            </table>
+
+        </section>
+
+    </main>
+
+    <dialog id="modal-chi-tiet-don">
+
+        <article>
+
+            <header>
+
+                <h2>Thông tin đơn thuốc</h2>
+
+            </header>
+
+            <section>
+
+                <h3>Thông tin phòng khám</h3>
+
+                <p>Phòng khám Mini</p>
+
+                <p>Mã đơn: <span id="modal-ma-don"></span></p>
+
+                <p>Ngày kê: <span id="modal-ngay-ke"></span></p>
+
+                <p>Bệnh nhân: <span id="modal-benh-nhan"></span></p>
+
+                <p>Bác sĩ: <span id="modal-bac-si"></span></p>
+
+                <p>Chẩn đoán: <span id="modal-chuan-doan"></span></p>
+
+            </section>
+
+            <section>
+
+                <h3>Danh sách thuốc</h3>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Thuốc</th>
+                            <th>Liều dùng</th>
+                            <th>Tổng số lượng</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="modal-danh-sach-thuoc">
+
+                    </tbody>
+
+                </table>
+
+            </section>
+
+            <section>
+
+                <h3>Lời dặn</h3>
+
+                <p id="modal-loi-dan"></p>
+
+            </section>
+
+            <footer>
+
+                <button
+                    id="button-dong-modal"
+                    type="button">
+                    Đóng
+                </button>
+
+                <button
+                    id="button-in-don"
+                    type="button">
+                    In
+                </button>
+
+            </footer>
+
+        </article>
+
+    </dialog>
 
     <script type="module" src="./src/js/main.js"></script>
 
 </body>
+
 </html>
+```
