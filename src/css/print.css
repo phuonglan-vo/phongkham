@@ -1,0 +1,345 @@
+/* ===========================================================
+   PHÒNG KHÁM MINI
+   print.css
+   =========================================================== */
+
+@page {
+
+    size: A4;
+
+    margin: 15mm;
+
+}
+
+@media print {
+
+    /* =======================================================
+       Thiết lập chung
+       ======================================================= */
+
+    html,
+    body {
+
+        margin: 0;
+
+        padding: 0;
+
+        background: #ffffff !important;
+
+        color: #000000;
+
+        font-family:
+            "Times New Roman",
+            Times,
+            serif;
+
+        font-size: 12pt;
+
+        line-height: 1.5;
+
+        -webkit-print-color-adjust: economy;
+        print-color-adjust: economy;
+
+    }
+
+    * {
+
+        box-shadow: none !important;
+
+        text-shadow: none !important;
+
+        background-image: none !important;
+
+    }
+
+    /* =======================================================
+       Ẩn các thành phần giao diện
+       ======================================================= */
+
+    header,
+    nav,
+    footer,
+    aside,
+
+    form,
+
+    .toolbar,
+    .header-actions,
+    .main-navigation,
+    .system-message,
+    .form-actions,
+    .form-error,
+
+    #section-benh-nhan,
+    #section-kham-benh,
+    #section-lich-su,
+
+    #button-tao-du-lieu-mau,
+    #button-xoa-du-lieu,
+    #button-luu-benh-nhan,
+    #button-lam-moi-benh-nhan,
+    #button-them-thuoc,
+    #button-luu-nhap,
+    #button-hoan-tat-don,
+    #button-huy-kham,
+    #button-dong-modal,
+    #button-in-don {
+
+        display: none !important;
+
+    }
+
+    /* =======================================================
+       Chỉ in nội dung đơn thuốc
+       ======================================================= */
+
+    body {
+
+        visibility: hidden;
+
+    }
+
+    #modal-chi-tiet-don,
+    #modal-chi-tiet-don * {
+
+        visibility: visible;
+
+    }
+
+    #modal-chi-tiet-don {
+
+        display: block !important;
+
+        position: static !important;
+
+        width: 100% !important;
+
+        max-width: 100% !important;
+
+        margin: 0 !important;
+
+        padding: 0 !important;
+
+        border: none !important;
+
+        background: #ffffff !important;
+
+    }
+
+    #modal-chi-tiet-don::backdrop {
+
+        display: none;
+
+    }
+
+    #modal-chi-tiet-don article {
+
+        padding: 0;
+
+    }
+
+    /* =======================================================
+       Tiêu đề
+       ======================================================= */
+
+    #modal-chi-tiet-don header {
+
+        display: block !important;
+
+        text-align: center;
+
+        margin-bottom: 18px;
+
+        border-bottom: 2px solid #000;
+
+        padding-bottom: 10px;
+
+    }
+
+    #modal-chi-tiet-don h2 {
+
+        margin: 0;
+
+        font-size: 20pt;
+
+    }
+
+    #modal-chi-tiet-don h3 {
+
+        margin-top: 18px;
+
+        margin-bottom: 8px;
+
+        font-size: 14pt;
+
+    }
+
+    /* =======================================================
+       Thông tin đơn thuốc
+       ======================================================= */
+
+    #modal-chi-tiet-don p {
+
+        margin: 4px 0;
+
+    }
+
+    #modal-chi-tiet-don dl {
+
+        margin: 0;
+
+    }
+
+    #modal-chi-tiet-don dt {
+
+        font-weight: bold;
+
+    }
+
+    #modal-chi-tiet-don dd {
+
+        margin: 0 0 8px 0;
+
+    }
+
+    /* =======================================================
+       Bảng thuốc
+       ======================================================= */
+
+    table {
+
+        width: 100%;
+
+        border-collapse: collapse;
+
+        page-break-inside: auto;
+
+    }
+
+    thead {
+
+        display: table-header-group;
+
+    }
+
+    tbody {
+
+        display: table-row-group;
+
+    }
+
+    tr {
+
+        page-break-inside: avoid;
+
+        page-break-after: auto;
+
+    }
+
+    th,
+    td {
+
+        border: 1px solid #000;
+
+        padding: 6px;
+
+        vertical-align: top;
+
+        text-align: left;
+
+        word-break: break-word;
+
+        overflow-wrap: break-word;
+
+    }
+
+    th {
+
+        font-weight: bold;
+
+        background: transparent !important;
+
+        color: #000 !important;
+
+    }
+
+    /* =======================================================
+       Lời dặn
+       ======================================================= */
+
+    #modal-loi-dan {
+
+        min-height: 70px;
+
+        border: 1px solid #000;
+
+        padding: 10px;
+
+    }
+
+    /* =======================================================
+       Ký tên bác sĩ
+       ======================================================= */
+
+    #modal-chi-tiet-don footer {
+
+        display: block !important;
+
+        margin-top: 45px;
+
+        page-break-inside: avoid;
+
+        text-align: right;
+
+    }
+
+    #modal-chi-tiet-don footer::before {
+
+        content:
+            "Bác sĩ điều trị"
+            "\A\A\A\A"
+            "(Ký và ghi rõ họ tên)";
+
+        white-space: pre;
+
+        display: inline-block;
+
+        text-align: center;
+
+        min-width: 220px;
+
+        font-weight: bold;
+
+    }
+
+    /* =======================================================
+       Liên kết
+       ======================================================= */
+
+    a {
+
+        color: #000;
+
+        text-decoration: none;
+
+    }
+
+    a::after {
+
+        content: "";
+
+    }
+
+    /* =======================================================
+       Không chia các phần quan trọng
+       ======================================================= */
+
+    section,
+    article {
+
+        page-break-inside: avoid;
+
+    }
+
+}
+

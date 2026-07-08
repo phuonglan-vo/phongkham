@@ -1,0 +1,813 @@
+/* ===========================================================
+   PHÒNG KHÁM MINI
+   style.css
+   =========================================================== */
+
+:root {
+
+    --mau-chinh: #1976d2;
+    --mau-phu: #2e7d32;
+
+    --mau-xanh-nhat: #e3f2fd;
+    --mau-xanh-la: #e8f5e9;
+
+    --mau-trang: #ffffff;
+    --mau-nen: #f5f7fb;
+
+    --mau-vien: #d6dde8;
+
+    --mau-chu: #263238;
+    --mau-phu-chu: #607d8b;
+
+    --mau-loi: #d32f2f;
+    --mau-canh-bao: #f9a825;
+    --mau-thanh-cong: #2e7d32;
+
+    --do-bong: 0 6px 18px rgba(0, 0, 0, .08);
+
+    --bo-goc: 10px;
+
+    --khoang-cach: 16px;
+
+    --thoi-gian: .2s;
+
+    --font:
+        "Segoe UI",
+        Roboto,
+        Arial,
+        sans-serif;
+
+}
+
+*,
+*::before,
+*::after {
+
+    box-sizing: border-box;
+
+}
+
+html {
+
+    font-size: 16px;
+
+    scroll-behavior: smooth;
+
+}
+
+body {
+
+    margin: 0;
+
+    background: var(--mau-nen);
+
+    color: var(--mau-chu);
+
+    font-family: var(--font);
+
+    line-height: 1.5;
+
+}
+
+img {
+
+    max-width: 100%;
+
+}
+
+table {
+
+    width: 100%;
+
+    border-collapse: collapse;
+
+}
+
+button,
+input,
+textarea,
+select {
+
+    font: inherit;
+
+}
+
+button {
+
+    cursor: pointer;
+
+}
+
+textarea {
+
+    resize: vertical;
+
+    min-height: 90px;
+
+}
+
+/* ===========================================================
+HEADER
+=========================================================== */
+
+.app-header {
+
+    background: linear-gradient(135deg,
+            var(--mau-chinh),
+            var(--mau-phu));
+
+    color: white;
+
+    padding: 24px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    flex-wrap: wrap;
+
+}
+
+.app-header h1 {
+
+    margin: 0;
+
+}
+
+.app-header p {
+
+    margin: 8px 0 0;
+
+}
+
+.header-actions {
+
+    display: flex;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+}
+
+/* ===========================================================
+THÔNG BÁO
+=========================================================== */
+
+.system-message {
+
+    margin: 20px;
+
+    padding: 14px;
+
+    border-radius: var(--bo-goc);
+
+    display: none;
+
+}
+
+.thong-bao-thanh-cong {
+
+    display: block;
+
+    background: #e8f5e9;
+
+    color: var(--mau-thanh-cong);
+
+    border-left: 5px solid var(--mau-thanh-cong);
+
+}
+
+.thong-bao-loi {
+
+    display: block;
+
+    background: #ffebee;
+
+    color: var(--mau-loi);
+
+    border-left: 5px solid var(--mau-loi);
+
+}
+
+.thong-bao-canh-bao {
+
+    display: block;
+
+    background: #fff8e1;
+
+    color: #8d6e00;
+
+    border-left: 5px solid var(--mau-canh-bao);
+
+}
+
+/* ===========================================================
+NAVIGATION
+=========================================================== */
+
+.main-navigation {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    background: white;
+
+    padding: 18px;
+
+    box-shadow: var(--do-bong);
+
+}
+
+.nav-button {
+
+    border: none;
+
+    background: var(--mau-xanh-nhat);
+
+    color: var(--mau-chinh);
+
+    padding: 12px 22px;
+
+    border-radius: 999px;
+
+    transition: .2s;
+
+}
+
+.nav-button:hover {
+
+    background: var(--mau-chinh);
+
+    color: white;
+
+}
+
+.nav-button.active {
+
+    background: var(--mau-chinh);
+
+    color: white;
+
+}
+
+/* ===========================================================
+MAIN
+=========================================================== */
+
+main {
+
+    max-width: 1400px;
+
+    margin: auto;
+
+    padding: 24px;
+
+}
+
+.page-section {
+
+    background: white;
+
+    padding: 24px;
+
+    border-radius: var(--bo-goc);
+
+    box-shadow: var(--do-bong);
+
+    margin-bottom: 24px;
+
+}
+
+.page-section[hidden] {
+
+    display: none;
+
+}
+
+/* ===========================================================
+FORM
+=========================================================== */
+
+form {
+
+    display: grid;
+
+    gap: 18px;
+
+}
+
+#form-benh-nhan {
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(250px, 1fr));
+
+}
+
+#form-kham-benh {
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(300px, 1fr));
+
+}
+
+#form-thuoc {
+
+    grid-template-columns:
+        repeat(auto-fit,
+            minmax(220px, 1fr));
+
+}
+
+label {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    font-weight: 600;
+
+}
+
+input,
+textarea,
+select {
+
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    border: 1px solid var(--mau-vien);
+
+    background: white;
+
+}
+
+input:focus,
+textarea:focus,
+select:focus,
+button:focus {
+
+    outline: 3px solid rgba(25, 118, 210, .25);
+
+    border-color: var(--mau-chinh);
+
+}
+
+/* ===========================================================
+BUTTONS
+=========================================================== */
+
+button {
+
+    border: none;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    transition: .2s;
+
+}
+
+button:hover {
+
+    transform: translateY(-1px);
+
+}
+
+#button-luu-benh-nhan,
+.button-them {
+
+    background: var(--mau-phu);
+
+    color: white;
+
+}
+
+#button-luu-benh-nhan:hover,
+.button-them:hover {
+
+    background: #256d28;
+
+}
+
+.button-sua {
+
+    background: #ff9800;
+
+    color: white;
+
+}
+
+.button-xoa {
+
+    background: #d32f2f;
+
+    color: white;
+
+}
+
+.button-kham {
+
+    background: var(--mau-chinh);
+
+    color: white;
+
+}
+
+#button-hoan-tat-don {
+
+    background: var(--mau-phu);
+
+    color: white;
+
+}
+
+#button-luu-nhap {
+
+    background: #607d8b;
+
+    color: white;
+
+}
+
+#button-huy-kham {
+
+    background: #d32f2f;
+
+    color: white;
+
+}
+
+.form-actions {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+}
+
+/* ===========================================================
+ERROR
+=========================================================== */
+
+.form-error {
+
+    color: var(--mau-loi);
+
+    font-size: .95rem;
+
+}
+
+/* ===========================================================
+TABLE
+=========================================================== */
+
+.toolbar {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 16px;
+
+    margin: 20px 0;
+
+}
+
+.toolbar>div {
+
+    flex: 1;
+
+    min-width: 220px;
+
+}
+
+table {
+
+    background: white;
+
+}
+
+thead {
+
+    background: var(--mau-chinh);
+
+    color: white;
+
+}
+
+th,
+td {
+
+    padding: 12px;
+
+    border: 1px solid #e3e3e3;
+
+    text-align: left;
+
+    vertical-align: top;
+
+}
+
+tbody tr:nth-child(even) {
+
+    background: #fafafa;
+
+}
+
+tbody tr:hover {
+
+    background: #f3f9ff;
+
+}
+
+/* ===========================================================
+BADGE
+=========================================================== */
+
+.badge {
+
+    display: inline-block;
+
+    padding: 5px 12px;
+
+    border-radius: 999px;
+
+    font-size: .85rem;
+
+    font-weight: bold;
+
+}
+
+.badge-cho-kham {
+
+    background: #fff3cd;
+
+    color: #856404;
+
+}
+
+.badge-dang-kham {
+
+    background: #d1ecf1;
+
+    color: #0c5460;
+
+}
+
+.badge-da-kham {
+
+    background: #d4edda;
+
+    color: #155724;
+
+}
+
+.badge-nhap {
+
+    background: #eceff1;
+
+    color: #455a64;
+
+}
+
+.badge-da-hoan-tat {
+
+    background: #c8e6c9;
+
+    color: #1b5e20;
+
+}
+
+.badge-da-huy {
+
+    background: #ffcdd2;
+
+    color: #b71c1c;
+
+}
+
+/* ===========================================================
+MODAL
+=========================================================== */
+
+dialog {
+
+    width: min(900px, 95vw);
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding: 0;
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+
+}
+
+dialog::backdrop {
+
+    background: rgba(0, 0, 0, .45);
+
+}
+
+dialog article {
+
+    padding: 24px;
+
+}
+
+dialog footer {
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    margin-top: 24px;
+
+}
+
+/* ===========================================================
+HELPER
+=========================================================== */
+
+.an {
+
+    display: none !important;
+
+}
+
+.text-center {
+
+    text-align: center;
+
+}
+
+.text-right {
+
+    text-align: right;
+
+}
+
+.mt-1 {
+
+    margin-top: 10px;
+
+}
+
+.mt-2 {
+
+    margin-top: 20px;
+
+}
+
+/* ===========================================================
+RESPONSIVE TABLET
+=========================================================== */
+
+@media (max-width:900px) {
+
+    .app-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+    main {
+
+        padding: 16px;
+
+    }
+
+}
+
+/* ===========================================================
+RESPONSIVE MOBILE
+=========================================================== */
+
+@media (max-width:700px) {
+
+    .toolbar {
+
+        flex-direction: column;
+
+    }
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+
+        display: block;
+
+    }
+
+    thead {
+
+        display: none;
+
+    }
+
+    tbody tr {
+
+        background: white;
+
+        border-radius: 10px;
+
+        margin-bottom: 16px;
+
+        box-shadow: var(--do-bong);
+
+        overflow: hidden;
+
+    }
+
+    td {
+
+        display: flex;
+
+        justify-content: space-between;
+
+        gap: 16px;
+
+        border: none;
+
+        border-bottom: 1px solid #eee;
+
+    }
+
+    td:last-child {
+
+        border-bottom: none;
+
+    }
+
+    td::before {
+
+        content: attr(data-label);
+
+        font-weight: bold;
+
+        color: var(--mau-phu-chu);
+
+    }
+
+    .form-actions {
+
+        flex-direction: column;
+
+    }
+
+    .form-actions button {
+
+        width: 100%;
+
+    }
+
+    .header-actions {
+
+        width: 100%;
+
+    }
+
+    .header-actions button {
+
+        flex: 1;
+
+    }
+
+    .main-navigation {
+
+        flex-direction: column;
+
+    }
+
+    .nav-button {
+
+        width: 100%;
+
+    }
+
+}
+
