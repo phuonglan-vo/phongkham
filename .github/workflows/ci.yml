@@ -1,23 +1,28 @@
-# khi manual trigger
+name: Manual Test Workflow
+
+# Khi manual trigger
 on:
   workflow_dispatch:
 
 # Job Test
 jobs:
   test:
-    # lựa chọn máy runner chạy
+    # Lựa chọn máy runner chạy
     runs-on: ubuntu-latest
+    
     steps:
-      # Step 1: lấy source về
+      # Step 1: Lấy source về
       - name: Clone/Checkout source code
-        uses: actions/checkout@v6
-      # Step 2: cài đặt các thư viện phụ thuộc
+        uses: actions/checkout@v4
+
+      # Step 2: Cài đặt các thư viện phụ thuộc
       - name: Install dependencies
         run: |
-            node --version
-            npm --version
-            pwd
-            ls -ls 
-      # Step 3: run test
+          node --version
+          npm --version
+          pwd
+          ls -la
+
+      # Step 3: Run test
       - name: Run tests
         run: npm test
