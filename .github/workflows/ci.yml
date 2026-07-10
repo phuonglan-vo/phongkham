@@ -13,7 +13,7 @@ jobs:
     steps:
       # Step 1: Lấy source về
       - name: Clone/Checkout source code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       # Step 2: Cài đặt các thư viện phụ thuộc
       - name: Install dependencies
