@@ -25,8 +25,8 @@ const NHAN_TRANG_THAI = Object.freeze({
  */
 export function khoiTaoBenhNhanUI({
     benhNhanService,
-    khiChonKham = () => {},
-    khiDuLieuThayDoi = () => {}
+    khiChonKham = () => { },
+    khiDuLieuThayDoi = () => { }
 }) {
     const form = document.getElementById("form-benh-nhan");
     const thanBang = document.querySelector("#danh-sach-benh-nhan tbody");
@@ -51,11 +51,15 @@ export function khoiTaoBenhNhanUI({
         };
     }
 
-    function lamMoiFormBenhNhan() {
-        form.reset();
+    function datLaiTrangThaiFormBenhNhan() {
         oId.value = "";
         xoaLoiForm("#loi-form-benh-nhan");
         document.getElementById("button-luu-benh-nhan").textContent = "Lưu";
+    }
+
+    function lamMoiFormBenhNhan() {
+        form.reset();
+        datLaiTrangThaiFormBenhNhan();
     }
 
     function dienDuLieuBenhNhanVaoForm(benhNhan) {
@@ -216,7 +220,9 @@ export function khoiTaoBenhNhanUI({
     }
 
     form.addEventListener("submit", xuLyLuuBenhNhan);
-    form.addEventListener("reset", () => queueMicrotask(lamMoiFormBenhNhan));
+    form.addEventListener("reset", () => {
+        queueMicrotask(datLaiTrangThaiFormBenhNhan);
+    });
     oTimKiem.addEventListener("input", xuLyTimKiemBenhNhan);
     boLocTrangThai.addEventListener("change", xuLyTimKiemBenhNhan);
     thanBang.addEventListener("click", (suKien) => {
