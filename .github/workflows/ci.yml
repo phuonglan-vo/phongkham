@@ -1,0 +1,22 @@
+# khi manual trigger
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    # lựa chọn máy runner chạy
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: lấy source về
+      - name: Clone/Checkout source code
+        uses: actions/checkout@v6
+      # Step 2: cài đặt các thư viện phụ thuộc
+      - name: Install dependencies
+        run: |
+            node --version
+            npm --version
+            pwd
+            ls -ls 
+      # Step 3: run test
+      - name: Run tests
+        run: npm test
